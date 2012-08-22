@@ -1,0 +1,116 @@
+<html>
+    <head>
+    <style>
+        ul.send {
+            list-style: none;
+        }
+        .c1,
+        .c2 {
+            width: 40%;
+            border: thin solid black;
+            float: left;
+        }
+        .c1 {
+            margin-right: 20px;
+        }
+        .c2 h1 {
+            font-size: 12pt;
+            font-weight: normal;
+            text-decoration: underline;
+        }
+        #received {
+            margin-left: 50px;
+        }
+        .clear {
+            clear: both;
+        }
+    </style>
+    <script
+    src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+    <script src='/strophejs-1.0.2/strophe.js'></script> 
+    <script>
+    var conn = new Strophe.Connection('http://localhost:8000/http-bind/');
+    var pingIntervalId;
+
+    function f1(status) {
+        if(status == Strophe.Status.CONNECTED) {
+            console.debug('CONNECTED');
+            $('#received').append("Login successful\n");
+        }
+        else
+            console.debug('CONNECTION FAILED:', status, Strophe.Status);
+    }
+
+    function f2(msg) {
+        console.debug('message received', msg);
+        var $msg = $(msg);
+        $('#received').append($msg.find('body').text(), $('<br>'));
+    }
+
+    function ping() {
+        conn.send($pres());
+    }
+
+    $(function() {
+
+        /* Build the action listeners */
+        $('#login').click(function(e) {
+            var myname = $('#myname').val();
+            if(! myname) {
+                alert('Specify name');
+                return;
+            }
+            conn.connect(myname, '', f1);
+            conn.addHandler(f2, null, 'message');
+            /* Start a loop and send <presence> to server */
+            pingIntervalId = setInterval(ping, 1000);
+        });
+        $('#logout').click(function(e) {
+            clearInterval(pingIntervalId);
+            conn.disconnect();
+        });
+        $('#send').click(function(e) {
+            var to = $('#to').val();
+            var msg = $('#message').val();
+
+            console.debug('to=', to);
+            console.debug('msg=', msg);
+
+            var stanza = $msg({
+                to: to,
+                type: 'chat'
+            })
+            .c('body')
+            .t(msg);
+
+            conn.send(stanza);
+        });
+
+    });
+    </script>
+    </head>
+
+    <body>
+        <h1> Learning Strophe in One Hour </h1>
+
+        <div class="c1">
+            <ul class='send'>
+                <li>To<br/>
+                <input type='text' id='to'></input> </li>
+                <li>Message<br/>
+                    <textarea id='message'></textarea></li>
+                <li><button id='send'>Send</button></li>
+            </ul>
+        </div>
+        <div class="c2">
+            <h1> Received messages </h1>
+            <pre id='received'></pre>
+        </div>
+        <div class='clear'></div>
+        <hr/>
+
+        <input type='text' id='myname' value='abc@localhost'></input>
+        <button id='login'>Login</button>
+        <button id='logout'>Logout</button>
+    </body>
+</html>
