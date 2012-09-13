@@ -1,0 +1,59 @@
+body {
+    background: #888;
+    font-family: sans;
+}
+.container {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+    padding: 50px;
+    margin-top: 50px;
+    border-radius: 10px;
+}
+
+.corner {
+    position: fixed;
+    top: 0px;
+    background: #ccc;
+    padding: 10px;
+    font-size: 20pt;
+    margin: 0px;
+    border: none;
+    font-family: sans;
+}
+#name {
+    left: 0px;
+    border-bottom-right-radius: 10px;
+}
+
+#logout {
+    right: 0px;
+    border-bottom-left-radius: 10px;
+}
+
+.send {
+    padding: 0px;
+}
+.container .send span {
+    width: 0px;
+    display: inline-block;
+}
+
+input {
+    border: thin solid #777;
+    font-family: 'Courier New', monospace;
+    font-size: 18pt;
+    width: 100px;
+    margin-left: 50px;
+    padding: 0;
+}
+.container .message {
+    margin-left: 50px;
+    padding: 0px;
+}
+textarea {
+    border: thin solid #777;
+    font-family: 'Courier New', monospace;
+    font-size: 18pt;
+}

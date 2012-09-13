@@ -1,0 +1,42 @@
+h1 {
+      text-align: center;}
+
+.random{
+      text-align: center;
+      font-size: 20pt;
+      border: thin solid black;
+      width: 40%;
+      height: 20%;
+      float: left;
+      }
+.login 
+   {
+      width: 40%;
+      height: 35%;    
+      border: thin solid black;
+      float: left;
+      
+      }
+ul {
+      list-style:none;
+      }
+.msg_to_send,
+.msg_received {
+      width: 40%;
+      border: thin solid black;
+      float: left;
+      }
+.msg_to_send{
+      margin-right: 20px;
+      }
+.msg_received h1 {
+      font-size: 12pt;
+      font-weight: normal;
+      text-decoration: underline;
+      }
+#received {
+      margin-left: 50px;
+      }
+.clear {
+      clear: both;
+      }

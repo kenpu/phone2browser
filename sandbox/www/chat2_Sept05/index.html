@@ -1,0 +1,26 @@
+<html>
+  <head>
+    
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+  <script src='/strophejs-1.0.2/strophe.js'></script>
+  <link rel='stylesheet' href='index.css'>
+  <script type="text/javascript" src='chat.js'></script> 
+  </head>
+  
+  <body>
+    <div id='name' class='corner'></div>
+    <button id='logout' class='corner'>Logout</button>
+
+    <div class='container'>
+        <div class='send'>
+            <span>&rightarrow;</span> <input type='text' id='to'></input>
+        </div>
+        <div class='message'>
+            <textarea id='message'></textarea>
+        </div>
+        <hr/>
+        <div class='received'>
+            <pre id='received'></pre>
+        </div>
+    </div>
+</html>
